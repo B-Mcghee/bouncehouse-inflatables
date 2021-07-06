@@ -19,6 +19,64 @@ const routes = [
     component: function () {
       return import(/* webpackChunkName: "about" */ '../views/About.vue')
     }
+  },
+  {
+    path: '/products/',
+    name: 'ProductList',
+    component: function () {
+      return import(/* webpackChunkName: "products" */ '../views/products/ProductList.vue')
+    }
+  },
+  {
+    path:'/products/inflatable/:slug',
+    name: 'SingleProduct',
+    component:function(){
+      return import('../views/products/Product.vue')
+    },
+    props:true
+    // children:[
+    //   {
+    //     path: 'inflatable/:slug',
+    //     name:'SingleProduct',
+    //     component: function () {
+    //       return import('../views/products/Product.vue')
+    //     }
+    //   }
+    // ]
+  },
+  {
+    path: '/checkout',
+    name: 'Checkout',
+    component: function () {
+      return import(/* webpackChunkName: "products" */ '../views/checkout/Review.vue')
+    },
+    children:[
+      {
+        path: 'customer',
+        name: 'Customer',
+        component: function () {
+          return import(/* webpackChunkName: "products" */ '../views/checkout/Customer.vue')
+        }
+      },
+    ]
+  },
+  // {
+  //   path: '/checkout/customer',
+  //   name: 'Customer',
+  //   component: function () {
+  //     return import(/* webpackChunkName: "products" */ '../views/checkout/Customer.vue')
+  //   }
+  // },
+  {
+    path: '/checkout/payment',
+    name: 'Payment',
+    component: function () {
+      return import(/* webpackChunkName: "products" */ '../views/checkout/Payment.vue')
+    }
+  },
+  {
+    path:"*",
+    redirect:'/'
   }
 ]
 
